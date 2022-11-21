@@ -75,3 +75,5 @@ Important Notes and few Assumptions for this deployment section :
     If you have an arm .json template file you can convert it back to .bicep with the below command
     "az bicep decompile --file <template name>.json"
     please refer this for further reference.
+    
+Pricing Calculator for the above deployed resources : https://azure.microsoft.com/en-us/pricing/calculator/Synapse%20ESLZ
