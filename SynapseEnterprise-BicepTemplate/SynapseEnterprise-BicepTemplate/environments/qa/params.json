@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "tenantID":{
+            "value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        },
+        "subscription_id": {
+            "value": "3eb40400-1727-4dbe-8477-b36f18919031"
+        },
+        "project_code":{
+            "value": "jiodemoqa"
+        },
+        "vnet_name": {
+            "value": "myvnetqa"
+        },
+        "pesubnet_name": {
+            "value": "pesubnetqa"
+        },
+        "runtimesubnet_name": {
+            "value": "pesubnetqa"
+        },
+        "retention_days" : {
+            "value": 7
+        },
+        "shirusername": {
+            "value": "azureuser"
+        },
+        "shirpassword":{
+            "value": "Rambo_1121"
+        }        
+    }
+}
