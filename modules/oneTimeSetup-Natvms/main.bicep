@@ -62,7 +62,6 @@ resource virtualMachines_myVM1_name_resource 'Microsoft.Compute/virtualMachines@
     osProfile: {
       computerName: virtualMachines_myVM1_name
       adminUsername: username
-      //adminPassword: password
       linuxConfiguration: {
         disablePasswordAuthentication: true
         ssh: {
@@ -158,7 +157,6 @@ resource virtualMachines_myVM2_name_resource 'Microsoft.Compute/virtualMachines@
     osProfile: {
       computerName: virtualMachines_myVM2_name
       adminUsername: username
-      //adminPassword: password
       linuxConfiguration: {
         disablePasswordAuthentication: true
         ssh: {
@@ -232,7 +230,6 @@ resource loadBalancers_newloadbalancer007_name_resource 'Microsoft.Network/loadB
       {
         name: 'frontendip1'
         properties: {
-          //privateIPAddress: '10.6.5.4'
           privateIPAllocationMethod: 'Dynamic'
           subnet: {
             id: nicsubnet
@@ -290,7 +287,6 @@ resource privateLinkServices_newprivatelink007_name_resource 'Microsoft.Network/
       {
         name: 'pls-subnet-1'
         properties: {
-          //privateIPAddress: '10.6.5.5'
           privateIPAllocationMethod: 'Dynamic'
           subnet: {
             id: nicsubnet
