@@ -1,9 +1,8 @@
 
 This codebase is created to convert the infrastructure as code and automate the deployment of a enterprise grade Synaspe Workspace.
 
-We can test this codebase in two ways:
-1. Use the pipeline.yml and create your own Devops piepline (Azure Devops) 
-2. Open a Powershell console and run the deploy.ps1
+We can test this codebase through the deploy.ps1 file
+1. Open a Powershell console and run the deploy.ps1 file
 Usage : ./deploy.ps1 resourcegroup location environment projectcode
 
 Now, we will explain each section of this deployment.
