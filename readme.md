@@ -1,6 +1,10 @@
-Please find the proposed base folder structure of the files
 
-<img src="https://dev.azure.com/ssamadda/9babd695-135e-422b-986d-28bdea4cd910/_apis/git/repositories/341b468b-4b8e-4141-8923-3584866cc2e5/items?path=/Images/folderstructure.jpg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=BicepTemplate&resolveLfs=true&%24format=octetStream&api-version=5.0"/> 
+This codebase is convert the infrastructure as Code and automate the deployment of a enterprise grade Synaspe Workspace.
+
+We can test this codebase in two ways:
+1. Use the pipeline.yml and create your own Devops piepline (Azure Devops) 
+2. Open a Powershell console and run the deploy.ps1
+Usage : ./deploy.ps1 resourcegroup location environment projectcode
 
 Now, we will explain each section of this deployment.
 According to the folder structure we have five main components:
