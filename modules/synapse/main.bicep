@@ -159,29 +159,6 @@ resource ApachePool 'Microsoft.Synapse/workspaces/bigDataPools@2021-06-01' = {
   ]
 }
 
-/*resource workspaces_manualsynapsews_name_adxpool007 'Microsoft.Synapse/workspaces/kustoPools@2021-06-01-preview' = {
-  name: '${workspaces_name}/adxpool007'
-  location: location
-  sku: {
-    name: 'Compute optimized'
-    size: 'Extra small'
-    capacity: 2
-  }
-  properties: {
-    optimizedAutoscale: {
-      version: 1
-      isEnabled: true
-      minimum: 2
-      maximum: 3
-    }
-    enableStreamingIngest: true
-    enablePurge: true    
-  }
-  dependsOn: [
-    synapsews
-  ]
-}*/
-
 resource workspaces_manualsynapsews_name_Dedicated_SQL_Pool 'Microsoft.Synapse/workspaces/sqlPools@2021-06-01' = {
   name: '${workspaces_name}/${project_code}DedicatedSQLPool'
   location: location
