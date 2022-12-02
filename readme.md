@@ -12,7 +12,6 @@ According to the folder structure we have five main components:
 2.	environments [Folder]
 3.	deployments [Folder]
 4.	deploy.ps1
-5.	pipeline.yml
 
 •	Modules [Folder]
 This section will contain all the modules we want to deploy through the code. Let’s evaluate the contents within the modules folder:
@@ -58,9 +57,6 @@ This will deploy the below resources:
 -	Private Endpoints
 -	Nat VMs
 -	Self Hosted Integration Runtime resource
- 
-•	pipeline.yml
-This file is used to deploy the ./deploy.ps1 through Azure Devops Pipeline. It is a multi-stage deployment.
  
 Important Notes and few Assumptions for this deployment section : 
 1. VNet and Subnets are already created, the code is already present and commented. So only use it if required.
