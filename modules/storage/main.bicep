@@ -17,7 +17,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
     defaultToOAuthAuthentication: false
     publicNetworkAccess: 'Disabled'
     allowCrossTenantReplication: false
-    //isSftpEnabled: false
     minimumTlsVersion: 'TLS1_2'
     allowBlobPublicAccess: false
     allowSharedKeyAccess: true
@@ -80,12 +79,6 @@ resource fileservice 'Microsoft.Storage/storageAccounts/fileServices@2021-09-01'
   parent: storageAccount
   name: 'default'
   properties: {
-    /*protocolSettings: {
-      smb: {}
-    }
-    cors: {
-      corsRules: []
-    }*/
     shareDeleteRetentionPolicy: {
       enabled: true
       days: retention_days
