@@ -1,5 +1,5 @@
 
-This codebase is convert the infrastructure as Code and automate the deployment of a enterprise grade Synaspe Workspace.
+This codebase is created to convert the infrastructure as code and automate the deployment of a enterprise grade Synaspe Workspace.
 
 We can test this codebase in two ways:
 1. Use the pipeline.yml and create your own Devops piepline (Azure Devops) 
