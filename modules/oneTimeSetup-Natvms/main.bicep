@@ -246,24 +246,7 @@ resource loadBalancers_newloadbalancer007_name_resource 'Microsoft.Network/loadB
         name: 'mybackendpool'        
       }
     ]
-    loadBalancingRules: [
-      /*{
-        name: 'rule1'
-        properties: {
-          frontendIPConfiguration: {
-            id: '/subscriptions/${subscription_id}/resourceGroups/${resourcegroup}/providers/Microsoft.Network/loadBalancers/${loadBalancers_newloadbalancer007_name}/frontendIPConfigurations/frontendip1'
-          }
-          frontendPort: 1433
-          backendPort: 1433
-          enableFloatingIP: false
-          idleTimeoutInMinutes: 15
-          protocol: 'Tcp'
-          enableTcpReset: false
-          loadDistribution: 'Default'
-          disableOutboundSnat: true
-        }
-      }*/
-    ]
+    loadBalancingRules: []
     probes: [
       {
         name: 'newhealthprobe'
