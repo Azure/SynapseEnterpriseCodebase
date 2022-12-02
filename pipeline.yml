@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- BicepTemplate
+- BicepTemplate #name of your repo 
 
 pool:
   vmImage: windows-latest
@@ -23,7 +23,7 @@ stages:
               - checkout: self
               - task: AzureCLI@2
                 inputs:
-                  azureSubscription: 'azureservicecon'
+                  azureSubscription: 'azureservicecon' #name of the service connection
                   scriptType: 'ps'
                   scriptLocation: 'inlineScript'
                   inlineScript: './deploy.ps1 jiodemodev centralindia dev jiodemodv'
@@ -41,7 +41,7 @@ stages:
             - checkout: self             
             - task: AzureCLI@2
               inputs:
-                azureSubscription: 'azureservicecon'
+                azureSubscription: 'azureservicecon' #name of the service connection
                 scriptType: 'ps'
                 scriptLocation: 'inlineScript'
                 inlineScript: './deploy.ps1 jiodemoqa centralindia qa jiodemoqa'
@@ -59,7 +59,7 @@ stages:
             - checkout: self              
             - task: AzureCLI@2
               inputs:
-                azureSubscription: 'azureservicecon'
+                azureSubscription: 'azureservicecon' #name of the service connection
                 scriptType: 'ps'
                 scriptLocation: 'inlineScript'
                 inlineScript: './deploy.ps1 jiodemoprod centralindia prod jiodemopd'
