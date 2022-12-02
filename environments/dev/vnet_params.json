@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_myvnet_name": {
+            "value": "myvnetdev"
+        },
+        "location": {
+            "value": "centralindia"
+        },
+        "address_prefix": {
+            "value": "10.6.0.0/16"
+        },
+        "default_subnet_name": {
+            "value": "default"
+        },
+        "address_prefix_default_subnet": {
+            "value": "10.6.0.0/24"
+        },
+        "pe_subnet_name": {
+            "value": "pesubnetdev"
+        },
+        "address_prefix_pe_subnet": {
+            "value": "10.6.1.0/24"
+        },
+        "be_subnet_name": {
+            "value": "besubnetdev"
+        },
+        "address_prefix_be_subnet": {
+            "value": "10.6.2.0/24"
+        },
+        "fe_subnet_name": {
+            "value": "fesubnetdev"
+        },
+        "address_prefix_fe_subnet": {
+            "value": "10.6.3.0/24"
+        },
+        "pls_subnet_name": {
+            "value": "plssubnetdev"
+        },
+        "address_prefix_pls_subnet": {
+            "value": "10.6.4.0/24"
+        }
+    }
+}
