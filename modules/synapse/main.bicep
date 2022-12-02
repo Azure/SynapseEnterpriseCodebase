@@ -12,7 +12,10 @@ param pesynapseSql_name string
 param pesynapseSqlOnDemand_name string
 param tenantID string
 param username string
+
+@secure()
 param password string
+
 param runtimesubnet_id string
 param project_code string
 
@@ -52,7 +55,7 @@ resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
     encryption: {}
     managedVirtualNetwork: 'default'
     sqlAdministratorLogin: 'sqladminuser'
-    sqlAdministratorLoginPassword: 'H@Sh1CoR3!'
+    sqlAdministratorLoginPassword: ''
     privateEndpointConnections: [
       {
         properties: {
