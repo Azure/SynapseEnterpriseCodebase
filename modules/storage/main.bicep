@@ -97,10 +97,10 @@ module peBlob '../privateEndpoints/main.bicep' = {
   name: 'peblob-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peBlobName
-    parent_id : storageAccount.id
-    group_id : 'blob'
-    subnet_id: subnetId
+    privateEndpointName : peBlobName
+    parentId : storageAccount.id
+    groupId : 'blob'
+    subnetId: subnetId
   }
 }
 
@@ -108,10 +108,10 @@ module peFile '../privateEndpoints/main.bicep' = {
   name: 'pefile-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peFileName
-    parent_id : storageAccount.id
-    group_id : 'file'
-    subnet_id: subnetId
+    privateEndpointName : peFileName
+    parentId : storageAccount.id
+    groupId : 'file'
+    subnetId: subnetId
   }
 }
 
@@ -119,10 +119,10 @@ module peDFS '../privateEndpoints/main.bicep' = {
   name: 'pedfs-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peDFSName
-    parent_id : storageAccount.id
-    group_id : 'dfs'
-    subnet_id: subnetId
+    privateEndpointName : peDFSName
+    parentId : storageAccount.id
+    groupId : 'dfs'
+    subnetId: subnetId
   }
 }
 
