@@ -1,5 +1,5 @@
 
-This codebase is created to convert the infrastructure as code and automate the deployment of a enterprise grade Synaspe Workspace.
+This codebase is created to convert the Azure Analytics Infrastructure as code and automate the deployment of an enterprise grade Synaspe Workspace.
 
 We can test this codebase through the deploy.ps1 file
 1. Open a Powershell console and run the deploy.ps1 file
