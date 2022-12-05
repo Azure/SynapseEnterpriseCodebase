@@ -1,20 +1,25 @@
+@description('Location of the deployment')
 param location string
-param privateEndpoints_pefile_name string
-param parent_id string
-param group_id string
-param subnet_id string
+@description('Private Endpoint Name')
+param privateEndpointName string
+@description('Private link service Id')
+param parentId string
+@description('Private Endpoint Group ID')
+param groupId string
+@description('Subnet ID to deploy the Private Endpoint')
+param subnetId string
 
-resource privateEndpoints_pedfsblob_name_resource 'Microsoft.Network/privateEndpoints@2020-11-01' = {
-  name: privateEndpoints_pefile_name
+resource privateEndpointsResource 'Microsoft.Network/privateEndpoints@2020-11-01' = {
+  name: privateEndpointName
   location: location
   properties: {
     privateLinkServiceConnections: [
       {
-        name: privateEndpoints_pefile_name
+        name: privateEndpointName
         properties: {
-          privateLinkServiceId: parent_id
+          privateLinkServiceId: parentId
           groupIds: [
-            group_id
+            groupId
           ]
           privateLinkServiceConnectionState: {
             status: 'Approved'
@@ -26,7 +31,7 @@ resource privateEndpoints_pedfsblob_name_resource 'Microsoft.Network/privateEndp
     ]
     manualPrivateLinkServiceConnections: []
     subnet: {
-      id: subnet_id
+      id: subnetId
     }
     customDnsConfigs: []
   }
