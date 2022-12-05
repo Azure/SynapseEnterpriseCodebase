@@ -50,7 +50,7 @@ module primaryStorage '../storage/main.bicep' = {
 @description('variable used for creating unique names')
 var core = 'core'
 @description('variable used for creating unique names')
-var accountURL = 'https://${primarystorage.outputs.storageName}.dfs.${core}.windows.net'
+var accountURL = 'https://${primaryStorage.outputs.storageName}.dfs.${core}.windows.net'
 
 resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
   name: workspaceName
@@ -114,32 +114,32 @@ module pesynapseDev '../privateEndpoints/main.bicep' = {
   name: 'peDev-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peSynapseDevName
-    parent_id : synapsews.id
-    group_id : 'Dev'
-    subnet_id: subnet_id
+    privateEndpointName : peSynapseDevName
+    parentId : synapsews.id
+    groupId : 'Dev'
+    subnetId: subnetId
   }
 }
 
-module pesynapseSql '../privateEndpoints/main.bicep' = {
+module pesynapseSQL '../privateEndpoints/main.bicep' = {
   name: 'peSql-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peSynapseSQLName
-    parent_id : synapsews.id
-    group_id : 'Sql'
-    subnet_id: subnet_id
+    privateEndpointName : peSynapseSQLName
+    parentId : synapsews.id
+    groupId : 'Sql'
+    subnetId: subnetId
   }
 }
 
-module pesynapseSqlOnDemand '../privateEndpoints/main.bicep' = {
+module pesynapseSQLOnDemand '../privateEndpoints/main.bicep' = {
   name: 'peSqlOnDemand-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peSynapseSQLOnDemandName
-    parent_id : synapsews.id
-    group_id : 'Sql'
-    subnet_id: subnet_id
+    privateEndpointName : peSynapseSQLOnDemandName
+    parentId : synapsews.id
+    groupId : 'Sql'
+    subnetId: subnetId
   }
 }
 
@@ -238,7 +238,7 @@ resource shirVM 'Microsoft.Compute/virtualMachines@2021-03-01' = {
 }
 
 resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
-  name: '${projectCode}myshirvmnic'
+  name: '${projectCode}shirvmnic'
   location: location
   properties: {
     ipConfigurations: [
