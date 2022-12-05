@@ -1,32 +1,45 @@
+@description('Location for the deployment')
 param location string
-param virtualNetworks_myvnet_name string
-param address_prefix string
-param default_subnet_name string
-param address_prefix_default_subnet string
-param pe_subnet_name string
-param address_prefix_pe_subnet string
-param be_subnet_name string
-param address_prefix_be_subnet string
-param fe_subnet_name string
-param address_prefix_fe_subnet string
-param pls_subnet_name string
-param address_prefix_pls_subnet string
+@description('Name of the Virtual Network')
+param vNetName string
+@description('Address Prefix of the Vnet')
+param addressPrefix string
+@description('Default Subnet Name')
+param defaultSubnetName string
+@description('Address prefix for the subnet')
+param addressPrefixDefaultSubnet string
+@description('Name of the PE Subnet')
+param peSubnetName string
+@description('Address prefix for the PE Subnet')
+param addressPrefixPESubnet string
+@description('Name of the BE Subnet')
+param beSubnetName string
+@description('Address prefix for the BE Subnet')
+param addressPrefixBESubnet string
+@description('Name of the FE Subnet')
+param feSubnetName string
+@description('Address prefix for the FE Subnet')
+param addressPrefixFESubnet string
+@description('Name of the PLS Subnet')
+param plsSubnetName string
+@description('Address prefix for the PLS Subnet')
+param addressPrefixPLSSubnet string
 
 module resourcegroup '../../modules//virtualNetwork/main.bicep' = {
   name: 'vnet-deployment'
   params:{
     location: location
-    virtualNetworks_myvnet_name: virtualNetworks_myvnet_name
-    address_prefix: address_prefix
-    default_subnet_name: default_subnet_name
-    address_prefix_default_subnet: address_prefix_default_subnet
-    pe_subnet_name: pe_subnet_name
-    address_prefix_pe_subnet: address_prefix_pe_subnet
-    be_subnet_name: be_subnet_name
-    address_prefix_be_subnet: address_prefix_be_subnet
-    fe_subnet_name: fe_subnet_name
-    address_prefix_fe_subnet: address_prefix_fe_subnet
-    pls_subnet_name: pls_subnet_name
-    address_prefix_pls_subnet: address_prefix_pls_subnet
+    vNetName: vNetName
+    addressPrefix: addressPrefix
+    subnetName: defaultSubnetName
+    addressPrefixSubnet: addressPrefixDefaultSubnet
+    peSubnetName: peSubnetName
+    addressPrefixPESubnet: addressPrefixPESubnet
+    beSubnetName: beSubnetName
+    addressPrefixBESubnet: addressPrefixBESubnet
+    feSubnetName: feSubnetName
+    addressPrefixFESubnet: addressPrefixFESubnet
+    plsSubnetName: plsSubnetName
+    addressPrefixPLSSubnet: addressPrefixPLSSubnet
   }
 }
