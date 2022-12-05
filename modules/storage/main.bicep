@@ -1,13 +1,20 @@
-param storageAccount_name string
+@description('Name of the Storage Account')
+param storageAccountName string
+@description('Location of the deployment')
 param location string
-param retention_days int
-param peblob_name string
-param pefile_name string
-param pedfs_name string
-param subnet_id string
+@description('Retention days limit')
+param retentionDays int
+@description('Name of the private endpoint blob storage')
+param peBlobName string
+@description('Name of the private endpoint file storage')
+param peFileName string
+@description('Name of the private endpoint DFS storage')
+param peDFSName string
+@description('Subnet ID where the private endpoints will be deployed')
+param subnetId string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: storageAccount_name
+  name: storageAccountName
   location: location
   sku: {
     name: 'Standard_LRS'
@@ -60,7 +67,7 @@ resource blobservice 'Microsoft.Storage/storageAccounts/blobServices@2021-09-01'
   properties: {
     containerDeleteRetentionPolicy: {
       enabled: true
-      days: retention_days
+      days: retentionDays
     }
     cors: {
       corsRules: []
@@ -68,54 +75,54 @@ resource blobservice 'Microsoft.Storage/storageAccounts/blobServices@2021-09-01'
     deleteRetentionPolicy: {
       allowPermanentDelete: false
       enabled: true
-      days: retention_days
+      days: retentionDays
     }
   }
 }
 
 
 
-resource fileservice 'Microsoft.Storage/storageAccounts/fileServices@2021-09-01' = {
+resource fileService 'Microsoft.Storage/storageAccounts/fileServices@2021-09-01' = {
   parent: storageAccount
   name: 'default'
   properties: {
     shareDeleteRetentionPolicy: {
       enabled: true
-      days: retention_days
+      days: retentionDays
     }
   }
 }
 
-module peblob '../privateEndpoints/main.bicep' = {
+module peBlob '../privateEndpoints/main.bicep' = {
   name: 'peblob-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : peblob_name
+    privateEndpoints_pefile_name : peBlobName
     parent_id : storageAccount.id
     group_id : 'blob'
-    subnet_id: subnet_id
+    subnet_id: subnetId
   }
 }
 
-module pefile '../privateEndpoints/main.bicep' = {
+module peFile '../privateEndpoints/main.bicep' = {
   name: 'pefile-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : pefile_name
+    privateEndpoints_pefile_name : peFileName
     parent_id : storageAccount.id
     group_id : 'file'
-    subnet_id: subnet_id
+    subnet_id: subnetId
   }
 }
 
-module pedfs '../privateEndpoints/main.bicep' = {
+module peDFS '../privateEndpoints/main.bicep' = {
   name: 'pedfs-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : pedfs_name
+    privateEndpoints_pefile_name : peDFSName
     parent_id : storageAccount.id
     group_id : 'dfs'
-    subnet_id: subnet_id
+    subnet_id: subnetId
   }
 }
 
