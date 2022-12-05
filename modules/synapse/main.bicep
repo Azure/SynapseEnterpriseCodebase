@@ -1,43 +1,59 @@
+@description('Location of the deployment')
 param location string
-param primarystorageAccount_name string
-param retention_days int
-param peblob_name string
-param pefile_name string
-param pedfs_name string
-param subnet_id string
-param workspaces_name string
-param filesystem_name string
-param pesynapseDev_name string
-param pesynapseSql_name string
-param pesynapseSqlOnDemand_name string
-param tenantID string
-param username string
-
+@description('Name of the primary storage account')
+param primaryStorageAccountName string
+@description('Retention days limit')
+param retentionDays int
+@description('Private Endpoint name for Blob storage')
+param peBlobName string
+@description('Private Endpoint name for File storage')
+param peFileName string
+@description('Private Endpoint name for DFS storage')
+param peDFSName string
+@description('Subnet ID where the PE will be deployed')
+param subnetId string
+@description('Name of the Synapse Workspace')
+param workspaceName string
+@description('Name of the primary File system')
+param fileSystemName string
+@description('PE name for the Synapse Dev')
+param peSynapseDevName string
+@description('PE name for the Synapse SQL')
+param peSynapseSQLName string
+@description('PE name for the Synapse SQL on demand')
+param peSynapseSQLOnDemandName string
+@description('Tenant ID for the deployment')
+param tenantId string
+@description('Username for the Synapse Dedicated Pool')
+param userName string
+@description('Password for the Synapse Dedicated Pool')
 @secure()
 param password string
+@description('Subnet ID for the SHIR runtime VM')
+param runtimeSubnetId string
+@description('Project Code for the deployment')
+param projectCode string
 
-param runtimesubnet_id string
-param project_code string
-
-
-module primarystorage '../storage/main.bicep' = {
+module primaryStorage '../storage/main.bicep' = {
   name: 'primaryStorage-Deployment'
   params:{
     location: location
-    storageAccount_name: primarystorageAccount_name
-    retention_days: retention_days
-    peblob_name: peblob_name
-    pefile_name: pefile_name
-    pedfs_name: pedfs_name
-    subnet_id: subnet_id
+    storageAccountName: primaryStorageAccountName
+    retentionDays: retentionDays
+    peBlobName: peBlobName
+    peFileName: peFileName
+    peDFSName: peDFSName
+    subnetId: subnetId
   }
 }
 
+@description('variable used for creating unique names')
 var core = 'core'
+@description('variable used for creating unique names')
 var accountURL = 'https://${primarystorage.outputs.storageName}.dfs.${core}.windows.net'
 
 resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
-  name: workspaces_name
+  name: workspaceName
   location: location
   tags: {
     Tag1: 'automated'
@@ -47,10 +63,10 @@ resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
   }
   properties: {
     defaultDataLakeStorage: {
-      resourceId: primarystorage.outputs.storageId
+      resourceId: primaryStorage.outputs.storageId
       createManagedPrivateEndpoint: true
       accountUrl: accountURL
-      filesystem: filesystem_name
+      filesystem: fileSystemName
     }
     encryption: {}
     managedVirtualNetwork: 'default'
@@ -85,7 +101,7 @@ resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
     managedVirtualNetworkSettings: {
       preventDataExfiltration: true
       allowedAadTenantIdsForLinking: [
-        tenantID
+        tenantId
       ]
     }
     publicNetworkAccess: 'Disabled'
@@ -98,7 +114,7 @@ module pesynapseDev '../privateEndpoints/main.bicep' = {
   name: 'peDev-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : pesynapseDev_name
+    privateEndpoints_pefile_name : peSynapseDevName
     parent_id : synapsews.id
     group_id : 'Dev'
     subnet_id: subnet_id
@@ -109,7 +125,7 @@ module pesynapseSql '../privateEndpoints/main.bicep' = {
   name: 'peSql-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : pesynapseSql_name
+    privateEndpoints_pefile_name : peSynapseSQLName
     parent_id : synapsews.id
     group_id : 'Sql'
     subnet_id: subnet_id
@@ -120,7 +136,7 @@ module pesynapseSqlOnDemand '../privateEndpoints/main.bicep' = {
   name: 'peSqlOnDemand-deployment'
   params:{
     location: location
-    privateEndpoints_pefile_name : pesynapseSqlOnDemand_name
+    privateEndpoints_pefile_name : peSynapseSQLOnDemandName
     parent_id : synapsews.id
     group_id : 'Sql'
     subnet_id: subnet_id
@@ -128,7 +144,7 @@ module pesynapseSqlOnDemand '../privateEndpoints/main.bicep' = {
 }
 
 resource ApachePool 'Microsoft.Synapse/workspaces/bigDataPools@2021-06-01' = {
-  name: '${workspaces_name}/${project_code}pool'
+  name: '${workspaceName}/${projectCode}pool'
   location: location
   properties: {
     sparkVersion: '3.1'
@@ -160,7 +176,7 @@ resource ApachePool 'Microsoft.Synapse/workspaces/bigDataPools@2021-06-01' = {
 }
 
 resource workspaces_manualsynapsews_name_Dedicated_SQL_Pool 'Microsoft.Synapse/workspaces/sqlPools@2021-06-01' = {
-  name: '${workspaces_name}/${project_code}DedicatedSQLPool'
+  name: '${workspaceName}/${projectCode}DedicatedSQLPool'
   location: location
   sku: {
     name: 'DW100c'
@@ -178,15 +194,15 @@ resource workspaces_manualsynapsews_name_Dedicated_SQL_Pool 'Microsoft.Synapse/w
 }
 
 resource shirVM 'Microsoft.Compute/virtualMachines@2021-03-01' = {
-  name: '${project_code}shirvm'
+  name: '${projectCode}shirvm'
   location: location
   properties: {
     hardwareProfile: {
       vmSize: 'Standard_D2_v3'
     }
     osProfile: {
-      computerName: '${project_code}shirvm'
-      adminUsername: username
+      computerName: '${projectCode}shirvm'
+      adminUsername: userName
       adminPassword: password
     }
     storageProfile: {
@@ -222,7 +238,7 @@ resource shirVM 'Microsoft.Compute/virtualMachines@2021-03-01' = {
 }
 
 resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
-  name: '${project_code}myshirvmnic'
+  name: '${projectCode}myshirvmnic'
   location: location
   properties: {
     ipConfigurations: [
@@ -232,7 +248,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
           privateIPAllocationMethod: 'Dynamic'
           
           subnet: {
-            id: runtimesubnet_id
+            id: runtimeSubnetId
           }
         }
       }
