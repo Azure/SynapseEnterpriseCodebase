@@ -124,7 +124,7 @@ resource nic1 'Microsoft.Network/networkInterfaces@2021-02-01' = {
           }
           loadBalancerBackendAddressPools: [
             {
-              id: loadBalancersName.id
+              id: loadBalancersBackendPool.id
             }
           ]
         }
@@ -218,7 +218,7 @@ resource nic2 'Microsoft.Network/networkInterfaces@2021-02-01' = {
           }
           loadBalancerBackendAddressPools: [
             {
-              id: loadBalancersName.id
+              id: loadBalancersBackendPool.id
             }
           ]
         }
@@ -270,8 +270,8 @@ resource loadBalancersName 'Microsoft.Network/loadBalancers@2020-11-01' = {
   }
 }
 
-resource loadBalancers_newloadbalancer007_name_mybackendpool 'Microsoft.Network/loadBalancers/backendAddressPools@2020-11-01' = {
-  name: 'mybackendpool'
+resource loadBalancersBackendPool 'Microsoft.Network/loadBalancers/backendAddressPools@2020-11-01' = {
+  name: 'backendpool'
   parent: loadBalancersName  
 }
 
