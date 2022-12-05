@@ -1,67 +1,80 @@
-param virtualNetworks_myvnet_name string
+@description('Name of the virtual network')
+param vNetName string
+@description('location of the deployment')
 param location string
-param address_prefix string
-param default_subnet_name string
-param address_prefix_default_subnet string
-param pe_subnet_name string
-param address_prefix_pe_subnet string
-param be_subnet_name string
-param address_prefix_be_subnet string
-param fe_subnet_name string
-param address_prefix_fe_subnet string
-param pls_subnet_name string
-param address_prefix_pls_subnet string
+@description('Address prefix of the Vnet')
+param addressPrefix string
+@description('Name of the subnet')
+param subnetName string
+@description('Address prefix of the subnet')
+param addressPrefixSubnet string
+@description('Name of the PE subnet')
+param peSubnetName string
+@description('Address prefix of the PE subnet')
+param addressPrefixPESubnet string
+@description('Name of the BE subnet')
+param beSubnetName string
+@description('Address prefix of the BE subnet')
+param addressPrefixBESubnet string
+@description('Name of the FE subnet')
+param feSubnetName string
+@description('Address prefix of the FE subnet')
+param addressPrefixFESubnet string
+@description('Name of the PLS subnet')
+param plsSubnetName string
+@description('Address prefix of the PLS subnet')
+param addressPrefixPLSSubnet string
 
-resource virtualNetworks_myvnet_name_resource 'Microsoft.Network/virtualNetworks@2020-11-01' = {
-  name: virtualNetworks_myvnet_name
+resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
+  name: vNetName
   location: location
   properties: {
     addressSpace: {
       addressPrefixes: [
-        address_prefix
+        addressPrefix
       ]
     }
     subnets: [
       {
-        name: default_subnet_name
+        name: subnetName
         properties: {
-          addressPrefix: address_prefix_default_subnet
+          addressPrefix: addressPrefixSubnet
           delegations: []
           privateEndpointNetworkPolicies: 'Enabled'
           privateLinkServiceNetworkPolicies: 'Enabled'
         }
       }
       {
-        name: pe_subnet_name
+        name: peSubnetName
         properties: {
-          addressPrefix: address_prefix_pe_subnet
+          addressPrefix: addressPrefixPESubnet
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Disabled'
         }
       }
       {
-        name: be_subnet_name
+        name: beSubnetName
         properties: {
-          addressPrefix: address_prefix_be_subnet
+          addressPrefix: addressPrefixBESubnet
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Disabled'
         }
       }
       {
-        name: fe_subnet_name
+        name: feSubnetName
         properties: {
-          addressPrefix: address_prefix_fe_subnet
+          addressPrefix: addressPrefixFESubnet
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Disabled'
         }
       }
       {
-        name: pls_subnet_name
+        name: plsSubnetName
         properties: {
-          addressPrefix: address_prefix_pls_subnet
+          addressPrefix: addressPrefixPLSSubnet
           delegations: []
           privateEndpointNetworkPolicies: 'Disabled'
           privateLinkServiceNetworkPolicies: 'Disabled'
