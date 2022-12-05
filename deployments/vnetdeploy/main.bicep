@@ -28,18 +28,18 @@ param addressPrefixPLSSubnet string
 module resourcegroup '../../modules//virtualNetwork/main.bicep' = {
   name: 'vnet-deployment'
   params:{
-    location: location
-    vNetName: vNetName
-    addressPrefix: addressPrefix
-    subnetName: defaultSubnetName
-    addressPrefixSubnet: addressPrefixDefaultSubnet
-    peSubnetName: peSubnetName
-    addressPrefixPESubnet: addressPrefixPESubnet
-    beSubnetName: beSubnetName
-    addressPrefixBESubnet: addressPrefixBESubnet
-    feSubnetName: feSubnetName
-    addressPrefixFESubnet: addressPrefixFESubnet
-    plsSubnetName: plsSubnetName
+    location              : location
+    vNetName              : vNetName
+    addressPrefix         : addressPrefix
+    subnetName            : defaultSubnetName
+    addressPrefixSubnet   : addressPrefixDefaultSubnet
+    peSubnetName          : peSubnetName
+    addressPrefixPESubnet : addressPrefixPESubnet
+    beSubnetName          : beSubnetName
+    addressPrefixBESubnet : addressPrefixBESubnet
+    feSubnetName          : feSubnetName
+    addressPrefixFESubnet : addressPrefixFESubnet
+    plsSubnetName         : plsSubnetName
     addressPrefixPLSSubnet: addressPrefixPLSSubnet
   }
 }
