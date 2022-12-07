@@ -25,9 +25,6 @@
         },
         "shirUserName": {
             "value": "azureuser"
-        },
-        "shirPassword":{
-            "value": "Super_8765"
-        }        
+        }      
     }
 }
