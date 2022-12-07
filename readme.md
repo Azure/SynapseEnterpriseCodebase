@@ -39,6 +39,7 @@ This is a module which will define the Azure Virtual Network and associated subn
 •	environments [Folder]
 This section will define the environment variables that we need for different types of environments. The concept is that the module will be same but the environment variables will be different from one environment to another. Please find the files we need for the dev environment, we have considered one environment in this document: Dev , you may extend it to use other environments.
 
+In this sample we have parameterized TenantID, SubscriptionID and VM Passwords. We can either fill up the values or can use any secure space to hold the variables and use them for the deployment.
 <img src="https://dev.azure.com/ssamadda/9babd695-135e-422b-986d-28bdea4cd910/_apis/git/repositories/341b468b-4b8e-4141-8923-3584866cc2e5/items?path=/Images/environmentStructure.jpg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=BicepTemplate&resolveLfs=true&%24format=octetStream&api-version=5.0"/>  
 
 •	deployments [Folder]
