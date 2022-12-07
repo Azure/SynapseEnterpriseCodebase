@@ -71,7 +71,7 @@ Important Notes and few Assumptions for this deployment section :
 4. DNS configurations are excluded from this template.
 5. Managed Private Endpoints and Linked service should be implemented as need basis and manually
 6. Test cases are not included in this template
-7. Regarding reusing existing ARM templates-----------------------------------------------
+7. Regarding reusing existing ARM templates
     If you have an arm .json template file you can convert it back to .bicep with the below command
     "az bicep decompile --file <template name>.json"
     please refer this for further reference.
