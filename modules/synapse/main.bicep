@@ -71,7 +71,7 @@ resource synapsews 'Microsoft.Synapse/workspaces@2021-06-01' = {
     encryption: {}
     managedVirtualNetwork: 'default'
     sqlAdministratorLogin: 'sqladminuser'
-    sqlAdministratorLoginPassword: ''
+    sqlAdministratorLoginPassword: password
     privateEndpointConnections: [
       {
         properties: {
