@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "tenantId":{
-            "value": ""
+            "value": "{Provide your TenantID}"
         },
         "subscriptionId": {
-            "value": ""
+            "value": "{Provide your Subscription ID}"
         },
         "projectCode":{
             "value": "demodev"
@@ -25,6 +25,9 @@
         },
         "shirUserName": {
             "value": "azureuser"
+        },
+        "shirPassword": {
+            "value": "{Provide the password}"
         }      
     }
 }
